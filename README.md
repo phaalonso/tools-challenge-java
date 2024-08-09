@@ -44,62 +44,60 @@ Content-Type: application/json
 }
 
 > Response
-> {
->   "cartao": "************8321",
->   "id": "1345692113",
->   "descricao": {
->     "valor": "100.00",
->     "dataHora": "06/08/2024 23:30:00",
->     "estabelecimento": "Posto Aldo",
->     "nsu": "123456789",
->     "codigoAutorizacao": "123102983",
->     "status": "AUTORIZADO"
->   },
->   "formaPagamento": {
->     "tipoPagamento": "AVISTA",
->     "parcelas": 1
->   }
-> }
+<> {
+<>   "cartao": "************8321",
+<>   "id": "1345692113",
+<>   "descricao": {
+<>     "valor": "100.00",
+<>     "dataHora": "06/08/2024 23:30:00",
+<>     "estabelecimento": "Posto Aldo",
+<>     "nsu": "123456789",
+<>     "codigoAutorizacao": "123102983",
+<>     "status": "AUTORIZADO"
+<>   },
+<>   "formaPagamento": {
+<>     "tipoPagamento": "AVISTA",
+<>     "parcelas": 1
+<>   }
+<> }
 
 ### Consulta transaçao
 GET http://localhost:8080/transacao/1345692113
 
-> Response
-> {
->   "cartao": "************8321",
->   "id": "1345692113",
->   "descricao": {
->     "valor": "100.00",
->     "dataHora": "06/08/2024 23:30:00",
->     "estabelecimento": "Posto Aldo",
->     "nsu": "123456789",
->     "codigoAutorizacao": "123102983",
->     "status": "AUTORIZADO"
->   },
->   "formaPagamento": {
->     "tipoPagamento": "AVISTA",
->     "parcelas": 1
->   }
-> }
+<> {
+<>   "cartao": "************8321",
+<>   "id": "1345692113",
+<>   "descricao": {
+<>     "valor": "100.00",
+<>     "dataHora": "06/08/2024 23:30:00",
+<>     "estabelecimento": "Posto Aldo",
+<>     "nsu": "123456789",
+<>     "codigoAutorizacao": "123102983",
+<>     "status": "AUTORIZADO"
+<>   },
+<>   "formaPagamento": {
+<>     "tipoPagamento": "AVISTA",
+<>     "parcelas": 1
+<>   }
+<> }
 
 ### Realiza estorno
 POST http://localhost:8080/transacao/estornar/1345692113
 
-> Response
-> {
->   "cartao": "************8321",
->   "id": "1345692113",
->   "descricao": {
->     "valor": "100.00",
->     "dataHora": "06/08/2024 23:30:00",
->     "estabelecimento": "Posto Aldo",
->     "nsu": "123456789",
->     "codigoAutorizacao": "123102983",
->     "status": "CANCELADO"
->   },
->   "formaPagamento": {
->     "tipoPagamento": "AVISTA",
->     "parcelas": 1
->   }
-> }
+<> {
+<>   "cartao": "************8321",
+<>   "id": "1345692113",
+<>   "descricao": {
+<>     "valor": "100.00",
+<>     "dataHora": "06/08/2024 23:30:00",
+<>     "estabelecimento": "Posto Aldo",
+<>     "nsu": "123456789",
+<>     "codigoAutorizacao": "123102983",
+<>     "status": "CANCELADO"
+<>   },
+<>   "formaPagamento": {
+<>     "tipoPagamento": "AVISTA",
+<>     "parcelas": 1
+<>   }
+<> }
 ```
