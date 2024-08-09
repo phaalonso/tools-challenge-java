@@ -23,9 +23,9 @@ public class TransacaoService {
 
     @Transactional
     public void insereTransacao(TransacaoRequest transacao) {
-        transacao.getDescricao().setStatus(TipoStatus.AUTORIZADO);
-        transacao.getDescricao().setNsu("123102983");
-        transacao.getDescricao().setCodigoAutorizacao("123102983");
+        transacao.getDescricao().setStatus(verificaStatus(transacao));
+        transacao.getDescricao().setNsu(geraCodigoNSU());
+        transacao.getDescricao().setCodigoAutorizacao(getCodigoAutorizacao());
 
         transacaoRepository.insere(Mapper.toDTO(transacao));
     }
@@ -35,5 +35,20 @@ public class TransacaoService {
         return transacaoRepository.atualizaStatus(id, TipoStatus.CANCELADO)
                 .map(Mapper::toRequest)
                 .orElseThrow(TransacaoNaoEncontradaException::new);
+    }
+
+    //TODO
+    private TipoStatus verificaStatus(TransacaoRequest transacaoRequest) {
+        return TipoStatus.AUTORIZADO;
+    }
+
+    //TODO
+    private String geraCodigoNSU() {
+        return "123456789";
+    }
+
+    //TODO
+    private static String getCodigoAutorizacao() {
+        return "123102983";
     }
 }
