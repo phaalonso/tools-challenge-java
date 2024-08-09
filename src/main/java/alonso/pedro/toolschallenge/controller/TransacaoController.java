@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/transacao")
 @RequiredArgsConstructor(onConstructor_ = @__(@Autowired))
 public class TransacaoController {
-    private final TransacaoRepository transacaoRepository;
     private final TransacaoService transacaoService;
 
     @PostMapping

@@ -13,17 +13,8 @@ public enum TipoPagamento {
 
     @JsonValue
     private final String mensagem;
+
     private final Integer codigo;
-
-    public static TipoPagamento fromValue(String mensagem) {
-        for (TipoPagamento tipoPagamento : values()) {
-            if (tipoPagamento.mensagem.equals(mensagem)) {
-                return tipoPagamento;
-            }
-        }
-
-        return null;
-    }
 
     public static TipoPagamento fromCodigo(Integer codigo){
         for (TipoPagamento tipoPagamento : values()) {

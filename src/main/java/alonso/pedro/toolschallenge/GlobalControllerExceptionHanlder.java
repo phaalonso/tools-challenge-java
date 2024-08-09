@@ -1,7 +1,6 @@
 package alonso.pedro.toolschallenge;
 
 import alonso.pedro.toolschallenge.model.dto.ExceptionDTO;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class GlobalControllerExceptionHanlder {
     @ExceptionHandler(DuplicateKeyException.class)
-    public ResponseEntity<?> duplicatedKeyException(HttpServletRequest res, Exception e) {
+    public ResponseEntity<?> duplicatedKeyException() {
         log.debug("Ocorreu uma tentativa de cadastrar uma transação com um id já existente");
 
         return ResponseEntity.status(HttpStatus.CONFLICT)
