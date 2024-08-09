@@ -49,7 +49,6 @@ public class TransacaoRepository {
         return Optional.ofNullable(value);
     }
 
-    //TODO DTO
     public void insere(TransacaoDTO transacao) {
         try {
             var params = new MapSqlParameterSource()

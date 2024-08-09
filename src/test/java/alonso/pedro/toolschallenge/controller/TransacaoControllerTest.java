@@ -37,7 +37,7 @@ class TransacaoControllerTest extends ToolsChallengeApplicationTests {
                 .post("/transacao")
                 .then()
                 .statusCode(201)
-                .body("descricao.nsu", equalTo("123102983"))
+                .body("descricao.nsu", equalTo("123456789"))
                 .body("descricao.codigoAutorizacao", equalTo("123102983"))
                 .body("descricao.status", equalTo("AUTORIZADO"));
     }
