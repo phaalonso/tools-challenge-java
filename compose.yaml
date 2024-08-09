@@ -1,9 +1,11 @@
 services:
-  sqlserver:
-    image: 'mcr.microsoft.com/mssql/server:latest'
+  postgres:
+    image: 'postgres:latest'
     environment:
-      - 'ACCEPT_EULA=yes'
-      - 'MSSQL_PID=express'
-      - 'MSSQL_SA_PASSWORD=verYs3cret'
+      - 'POSTGRES_DB=tools_challenge'
+      - 'POSTGRES_PASSWORD=secret'
+      - 'POSTGRES_USER=user'
     ports:
-      - '1433:1433'
+      - '5432:5432'
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql

@@ -5,6 +5,7 @@ import alonso.pedro.toolschallenge.model.dto.TransacaoDTO;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.JdbcUpdateAffectedIncorrectNumberOfRowsException;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.EmptySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -22,23 +23,21 @@ public class TransacaoRepository {
         this.namedJdbcTemplate = namedJdbcTemplate;
     }
 
-    // TODO verificar conifugrações para encontrar qual está faltando
-    //  para não precisar especificar nome do banco e schema
     private static final String QUERY_ID = """
-            SELECT * FROM tools_challenge.dbo.transacoes
+            SELECT * FROM transacoes
             where id = :id
             """;
 
     private static final String QUERY_INSERT = """
-            insert into tools_challenge.dbo.transacoes(id, cartao, valor, estabelecimento, data_hora, tipo_pagamento, nsu, codigo_autorizacao, status, parcelas)
+            insert into transacoes(id, cartao, valor, estabelecimento, data_hora, tipo_pagamento, nsu, codigo_autorizacao, status, parcelas)
             values (:id, :cartao, :valor, :estabelecimento, :data_hora, :tipo_pagamento, :nsu, :codigo_autorizacao, :status, :parcelas);
             """;
 
     private static final String QUERY_UPDATE_STATUS = """
-            update tools_challenge.dbo.transacoes
+            update transacoes
             set status = :status
-            output inserted.*
             where id = :id
+            returning *
             """;
 
     public Optional<TransacaoDTO> findById(String id) {
@@ -86,6 +85,11 @@ public class TransacaoRepository {
                 QUERY_UPDATE_STATUS,
                 Map.of("status", status.name(), "id", id),
                 getTransacaoRowMapper()));
+    }
+
+    // Para testes
+    public void deleteAll() {
+        namedJdbcTemplate.update("DELETE FROM transacoes", new EmptySqlParameterSource());
     }
 
     private static RowMapper<TransacaoDTO> getTransacaoRowMapper() {
